@@ -1,0 +1,87 @@
+<ion-menu contentId="public-content">
+  <ion-header>
+    <ion-toolbar>
+        <img
+          class="menu-logo"
+          src="../../../../assets/images/bhd_logo.png"
+          alt="Logo BHD"
+        />
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="content__menu">
+    <ul class="list">
+      <li class="list__item">
+        <img src="../../../../assets/images/icon_contact.svg" alt="Icono contacto">
+        <a href="/contact">Contacto</a>
+      </li>
+      <li class="list__item">
+        <img src="../../../../assets/images/icon_branches.svg" alt="Icono sucursales">
+        <a href="/branches">Sucursales</a>
+      </li>
+    </ul>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="public-content">
+  <ion-content>
+    <div class="login">
+      <ion-buttons slot="start">
+        <ion-menu-button>
+          <img src="../../../../assets/images/icon_menu.svg" alt="Menu" />
+        </ion-menu-button>
+      </ion-buttons>
+
+      <div class="container">
+        <img
+          class="container__logo"
+          src="../../../../assets/images/bhd_logo.png"
+          alt="Logo BHD"
+        />
+        <form class="form" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+          <div class="form__item">
+            <img
+              class="form__item--icon"
+              src="../../../../assets/images/icon_user.svg"
+              alt="Icon account"
+            />
+            <input
+              type="text"
+              formControlName="document"
+              placeholder="Documento de identidad"
+            />
+          </div>
+          <div class="form__item">
+            <img
+              class="form__item--icon"
+              src="../../../../assets/images/icon_password.svg"
+              alt="Icon password"
+            />
+            <input
+              type="password"
+              formControlName="password"
+              placeholder="Contraseña"
+            />
+          </div>
+          <div class="form__switch">
+            <label class="switch">
+              <input
+                type="checkbox"
+                formControlName="rememberUsername"
+                id="remember_username"
+              />
+              <span class="slider"></span>
+            </label>
+            <label for="remember_username">Recuerda mi usuario</label>
+          </div>
+          <button
+            class="form__button"
+            type="submit"
+            [disabled]="!formulario.valid"
+          >
+            Iniciar sesión
+          </button>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</div>

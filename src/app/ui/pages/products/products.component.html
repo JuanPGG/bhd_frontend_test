@@ -1,0 +1,83 @@
+<ion-menu contentId="private-content">
+  <ion-header>
+    <ion-toolbar>
+        <div class="profile" *ngIf="user">
+          <img src="{{ user.photo}}" alt="Imagen de perfil de {{user.fullName}}" />
+          <h2>{{ user.fullName }}</h2>
+        </div>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ul class="list">
+      <li class="list__item">
+        <img src="../../../../assets/images/icon_my_products_green.svg" alt="Icono contacto">
+        <a href="/contact">Mis productos</a>
+      </li>
+      <li class="list__item">
+        <img src="../../../../assets/images/icon_transactions_green.svg" alt="Icono sucursales">
+        <a href="/branches">Transacciones</a>
+      </li>
+      <li class="list__item">
+        <img src="../../../../assets/images/icon_offers_green.svg" alt="Icono sucursales">
+        <a href="/branches">Ofertas</a>
+      </li>
+      <li class="list__item">
+        <img src="../../../../assets/images/icon_config_green.svg" alt="Icono sucursales">
+        <a href="/branches">Configuración</a>
+      </li>
+    </ul>
+    <span class="horizontal-line"></span>
+    <ul class="list">
+      <li class="list__item">
+        <img src="../../../../assets/images/icon_contact.svg" alt="Icono contacto">
+        <a href="/contact">Contacto</a>
+      </li>
+      <li class="list__item">
+        <img src="../../../../assets/images/icon_branches.svg" alt="Icono sucursales">
+        <a href="/branches">Sucursales</a>
+      </li>
+    </ul>
+    <button class="button-logout" (click)="logout()">Cerrar sesión</button>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="private-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button>
+          <img src="../../../../assets/images/icon_menu.svg" alt="Menu" />
+        </ion-menu-button>
+      </ion-buttons>
+      <ion-title>Mis productos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="products">
+    <ul class="products__list">
+      <li>
+        <h2>Cuentas ({{ accounts.length }})</h2>
+        <div class="card" *ngFor="let account of accounts">
+          <div class="card__header">
+            <img src="../../../../assets/images/icon_account_gray.svg" alt="Icono cuenta">
+            <h3>{{ account.alias }} - {{ account.accountNumber | lastFourDigits }}</h3>
+          </div>
+          <div class="card__balance" [innerHTML]="account.amountRD | currencyFormat: 'RD'"></div>
+          <p class="card__text">Balance disponible</p>
+        </div>
+      </li>
+      <li>
+        <h2 [ngStyle]="{color: '#00477A'}">Tarjetas ({{ cards.length }})</h2>
+        <div class="card"  [ngStyle]="{
+          'border-left-color': '#00477A'}" *ngFor="let card of cards">
+          <div class="card__header">
+            <img src="../../../../assets/images/icon_credit_card_gray.svg" alt="Icono tarjeta">
+            <h3>{{ card.alias}} - {{ card.accountNumber | lastFourDigits }}</h3>
+          </div>
+          <div class="card__balance" [innerHTML]="card.amountRD | currencyFormat: 'RD'"></div>
+          <div class="card__balance card__balance--other" [innerHTML]="card.amountUS | currencyFormat: 'US'"></div>
+          <p class="card__text">Balance disponible</p>
+        </div>
+      </li>
+    </ul>
+  </ion-content>
+</div>
